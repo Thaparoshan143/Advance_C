@@ -25,7 +25,7 @@ int main()
                 temp=*(arrptr+i);
                 *(arrptr+i)=*(arrptr+j);
                 *(arrptr+j)=temp;
-            }
+            } 
         }
     }
     for(int i=0;i<arraySize;i++)
