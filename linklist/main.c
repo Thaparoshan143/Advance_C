@@ -4,22 +4,22 @@
 typedef struct Rlist
 {
     int data;
-    Rlist* next;
+    struct Rlist* next;
 }Rlist;
 
 Rlist* addList(Rlist* p);
+int linkListCount(Rlist* h);
 
 int main()
 {
     FILE* fptr;
-    fptr=fopen("temp.txt","a+");
+    fptr=fopen("temp.txt","wb");
     Rlist* ptr,*slideptr;
     Rlist RootNode;
     ptr=&RootNode;
     slideptr=ptr;
     ptr=addList(ptr);
     int times=0;
-
 
     while(slideptr!=NULL && fptr!=NULL)
     {
@@ -33,6 +33,10 @@ int main()
         fwrite(slideptr,sizeof(Rlist),1,fptr);
         slideptr=slideptr->next;
     }
+
+    // int res=linkListCount(&RootNode);
+    // printf("%d list size",res);
+
     fclose(fptr);
 
     return 0;
@@ -43,4 +47,16 @@ Rlist* addList(Rlist* p)
     Rlist* temp=(Rlist*)malloc(sizeof(Rlist));
     p->next=temp;
     return temp;
+}
+
+int linkListCount(Rlist* h)
+{
+    int listCount=0;
+    Rlist* temp=h;
+    while(temp->next!=NULL)
+    {
+        listCount++;
+        temp=temp->next;
+    }
+    return listCount;
 }
